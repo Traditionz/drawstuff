@@ -1,0 +1,12 @@
+Color_layers sidebar 
+	- sidebar that should pop up when the colors tool is clicked form the toolbar.
+	- Contains the color wheel and the layers section with buttons to add/delete layer and maybe close layers section
+
+A couple of the other canvas UI are just ones that have the color sidebar closed.
+
+The anonymous canvas UIs are the ones that should be shown to anonymous users.
+	-has login and signup buttons next to home button
+
+The canvas shown to users have a log-out button next to the home button
+
+Added .ai files if someone wants to look at them, otherwise just use the pdf to see how it looks

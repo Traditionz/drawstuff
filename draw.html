@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/client.js"></script>
+<link rel="SHORTCUT ICON" href="icons/drawstuff%20favicon%2032x32.ico" type="image/x-icon" />
+<link rel="ICON" href="icons/drawstuff%20favicon%2032x32.ico" type="image/ico" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+
+body {
+	margin: 0;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	background-color: #000000;
+}
+
+li a:hover:not(.active2) {
+	background-color: #000000;
+}
+
+li a:hover:not(.active3) {
+	background-color: #000000;
+	ChangeTool("draw");
+}
+
+li a:hover:not(.active4) {
+	background-color: #000000;
+}
+
+.active {
+	background-color: #4CAF50;
+}
+
+.active2 {
+	background-color: #ff0000;
+}
+
+.active3 {
+	background-color: #808080;
+	background-image: url("icons/pen_tool.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	height: 18px;
+	width: 18px;
+}
+
+.active4 {
+	background-color: #FF7F00;
+	background-image: url("icons/eraser.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	height: 18px;
+	width: 18px;
+}
+
+chatbox {
+	margin: 0px;
+	padding: 8px 0px;
+	right: 0;
+	width: 17%;
+	background-color: #1111;
+	position: fixed;
+	height: 100%;
+	margin-top: 41px;
+	overflow-wrap: break-word;
+	border-style: solid;
+	border-width: 2px;
+}
+
+colors {
+	position: fixed;
+	right: 17%;
+	margin-top: 41px;
+}
+
+input {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	display:inline-block;
+	vertical-align:left-side;
+	width:275px;
+	height:75px;
+	overflow-wrap: break-word;
+}
+.enter_butt {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.enter_butt {
+    width: 280px;
+}
+</style>
+<script>
+var msgCount=0
+function sendMsg() {
+	var socket = io();
+	var msg = document.getElementById('key').value;
+	$.ajax({
+		type: "GET",
+		url: "http://localhost:8080/sendMsg?key="+msg,
+		dataType: "html",
+		success: function(msg) {
+			var output = msg;
+			socket.emit('msgToServer', msg);
+			},
+		error: function (err) {
+			alert("ERROR");
+			}
+	});
+}
+$(document).ready(function(){
+	var socket = io();
+	socket.on('msgAppendToClient', function(message){
+		if (msgCount == 15) {
+			$('.chatlogs').html("");
+			msgCount = 0;	
+		} else {
+			msgCount += 1;
+		}
+		$('.chatlogs').append("<p>"+message.username+": "+message.message+"</p>");
+	})
+})
+</script>
+</head>
+<body onload="Initialize()">
+
+<ul>
+	<li><a class="active3"></a></li>
+	<li><a class="active4"></a></li>
+	<li style="float:right"><a class="active2" href="http://localhost:8080/login.html">Logout</a></li>
+	<li style="float:right"><a class="active" href="http://localhost:8080/pagelist.html">Back</a></li>
+</ul>
+
+<chatbox>
+
+	<center>
+		Username
+	</center>
+	
+		<br>
+		
+	<div class="chatlogs" style="height:65%; padding:1px; background-color: white;"></div>
+		
+		<center>
+            <br>
+		<form>
+		<input type="text" rows="5" cols="2" id="key"></input>
+	</form>
+	
+		<button class='enter_butt' onclick='sendMsg()' >Enter</button>
+	
+		</center>
+</chatbox>
+
+<colors>
+	<canvas id="ColorWheel" width="250" height="300"></canvas>
+		<img id="Wheel" width="0" height="0" src="icons/wheel.png">
+		<img id="Box" width="0" height="0" src="icons/box.png">
+</colors>
+
+<div style="padding:20px;margin-top:5px;background-color:#ffffff;height:100%;">
+	<canvas id="Canvas" width="800" height="800">Draw Here!</canvas>
+</div>
+</body>
+</html>

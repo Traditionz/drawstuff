@@ -1,0 +1,9 @@
+{
+	"name": "DrawStuff",
+	"description": "Multiplayer drawing and chat",
+	"author": "Team ASIAN",
+	"dependencies": {
+		"express": "4.x",
+		"socket.io": "*"
+	}
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <link rel="SHORTCUT ICON" href="icons/drawstuff%20favicon%2032x32.ico" type="image/x-icon" />
+    <link rel="ICON" href="icons/drawstuff%20favicon%2032x32.ico" type="image/ico" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width = device-width, initial-scale = 1">
+	
+	<title>DrawStuff</title>
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<style>
+		.container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -200px;
+			margin-left: -200px;
+			width: 400px;
+			height: 400px;
+			vertical-align: middle;
+			padding: 10px;
+			border: 2px solid #000;
+			border-radius: 15px;
+			-moz-border-radius: 15px;
+            background-color: white
+		}
+		
+		.button1 {
+			background:    #00FF7F;
+			border-radius: 1000px;
+			padding:       8px 20px;
+			color:         #000;
+			display:       inline-block;
+			font:          normal 700 24px/1 "Calibri", sans-serif;
+			text-align:    center;
+		}
+
+		
+		label {
+			display: inline-block;
+			width: 100px;
+			text-align: center;
+		}
+		
+		input {
+			margin-top: 5px;
+			margin-bottom: 5px;
+			display: inline-block;
+			vertical-align: left-side;
+			margin-left: 0px;
+			width: 200px
+		}
+        .submit_button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 22px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+		.button1 {
+            width: 250px;
+        }
+	</style>
+</head>
+
+<body background="icons/graphicbg.jpg">
+	
+	<script>
+	
+	</script>
+
+	<div class="title">
+		<center>
+			<br><br><img src="icons/DrawStuff%20Logo1.png">
+		</center>
+	</div>
+	
+	<div class="container">
+		<center>
+			<h1>Login or <br> Create an Account</h1>
+			
+			<br>
+			<form action= "login" method="POST">
+			<div>
+				<label>Username</label>
+				<input type="text" name="username" placeholder="Username" rows="1" required></label>
+				<label>Password</label>
+				<input type="password" name="password" placeholder="Password" rows="1" required></label>
+				<br><br>
+                <input type="submit" class="submit_button"></input>
+			</div>
+			</form>
+
+			<br>
+			
+			
+		</center>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.js"></script>
+</body>
+
+</html>
